@@ -14,8 +14,6 @@ let package = Package(
       targets: ["MLKitFaceDetection", "MLImage", "MLKitVision", "Common"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/google/promises.git", exact: "2.4.0"),
-    .package(url: "https://github.com/google/GoogleDataTransport.git", exact: "9.4.0"),
     .package(url: "https://github.com/google/GoogleUtilities.git", exact: "7.13.3"),
     .package(url: "https://github.com/google/gtm-session-fetcher.git", exact: "3.4.1"),
     .package(url: "https://github.com/firebase/nanopb.git", exact: "2.30909.0"),
@@ -95,9 +93,7 @@ let package = Package(
         .product(name: "GULReachability", package: "GoogleUtilities"),
         .product(name: "GULUserDefaults", package: "GoogleUtilities"),
         .product(name: "GTMSessionFetcher", package: "gtm-session-fetcher"),
-        .product(name: "GoogleDataTransport", package: "GoogleDataTransport"),
         .product(name: "nanopb", package: "nanopb"),
-        .product(name: "FBLPromises", package: "promises"),
       ]),
   ]
 )
