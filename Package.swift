@@ -8,12 +8,16 @@ let package = Package(
   products: [
     .library(
       name: "MLKitBarcodeScanning",
-      targets: ["MLKitBarcodeScanning", "MLImage", "MLKitVision", "Common"]),
+      type: .dynamic,
+      targets: ["MLKitBarcodeScanning", "MLImage", "MLKitVision", "Common-barcode"]),
     .library(
       name: "MLKitFaceDetection",
-      targets: ["MLKitFaceDetection", "MLImage", "MLKitVision", "Common"]),
+      type: .dynamic,
+      targets: ["MLKitFaceDetection", "MLImage", "MLKitVision", "Common-face"]),
   ],
   dependencies: [
+    .package(url: "https://github.com/google/promises.git", exact: "2.4.0"),
+    .package(url: "https://github.com/google/GoogleDataTransport.git", exact: "9.4.0"),
     .package(url: "https://github.com/google/GoogleUtilities.git", exact: "7.13.3"),
     .package(url: "https://github.com/google/gtm-session-fetcher.git", exact: "3.4.1"),
     .package(url: "https://github.com/firebase/nanopb.git", exact: "2.30909.0"),
@@ -78,7 +82,28 @@ let package = Package(
         "https://github.com/d-date/google-mlkit-swiftpm/releases/download/6.0.0/GoogleUtilitiesComponents.xcframework.zip",
       checksum: "f34db62a980a77f68ee1ccb995edffdf5e68a758a521cdcd203bff5efb2d1722"),
     .target(
-      name: "Common",
+      name: "Common-barcode",
+      dependencies: [
+        "MLKitCommon",
+        "GoogleToolboxForMac",
+        "GoogleUtilitiesComponents",
+        .product(name: "GULAppDelegateSwizzler", package: "GoogleUtilities"),
+        .product(name: "GULEnvironment", package: "GoogleUtilities"),
+        .product(name: "GULISASwizzler", package: "GoogleUtilities"),
+        .product(name: "GULLogger", package: "GoogleUtilities"),
+        .product(name: "GULMethodSwizzler", package: "GoogleUtilities"),
+        .product(name: "GULNSData", package: "GoogleUtilities"),
+        .product(name: "GULNetwork", package: "GoogleUtilities"),
+        .product(name: "GULReachability", package: "GoogleUtilities"),
+        .product(name: "GULUserDefaults", package: "GoogleUtilities"),
+        .product(name: "GTMSessionFetcher", package: "gtm-session-fetcher"),
+        .product(name: "GoogleDataTransport", package: "GoogleDataTransport"),
+        .product(name: "nanopb", package: "nanopb"),
+        .product(name: "FBLPromises", package: "promises"),
+      ]
+    ),
+    .target(
+      name: "Common-face",
       dependencies: [
         "MLKitCommon",
         "GoogleToolboxForMac",
@@ -94,6 +119,7 @@ let package = Package(
         .product(name: "GULUserDefaults", package: "GoogleUtilities"),
         .product(name: "GTMSessionFetcher", package: "gtm-session-fetcher"),
         .product(name: "nanopb", package: "nanopb"),
-      ]),
+      ]
+    ),
   ]
 )
