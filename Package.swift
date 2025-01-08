@@ -119,7 +119,6 @@ let package = Package(
         .product(name: "GULUserDefaults", package: "GoogleUtilities"),
         .product(name: "GTMSessionFetcher", package: "gtm-session-fetcher"),
         .product(name: "nanopb", package: "nanopb"),
-      ]
-    ),
+      ]),
   ]
 )
